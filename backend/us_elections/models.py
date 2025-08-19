@@ -27,12 +27,11 @@ class Candidate(models.Model):
         return self.candidate_name
 
 class Party(models.Model):
-    party_simplified = models.CharField(max_length=128, unique=True, null=False, blank=False)
-    party_detailed = models.CharField(max_length=128, unique=True)
+    party = models.CharField(max_length=128, unique=True, null=False, blank=False)
     color_hex = models.CharField(max_length=7, null=True, blank=True)
 
     def __str__(self):
-        return self.party_name
+        return self.party
 
 class StateResults(models.Model):
     year = models.SmallIntegerField(null=False, blank=False)
