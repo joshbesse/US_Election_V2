@@ -22,11 +22,16 @@ def prepare_candidate_data(county_df):
     # change candidate name to more appealing formatting
     county_df["candidate"] = county_df["candidate"].str.title()
 
+    # 
+    county_df["candidate"] = county_df["candidate"].replace({
+        "John Mccain": "John McCain",
+        "Donald J Trump": "Donald Trump",
+        "Joseph R Biden Jr": "Joe Biden",
+        "Kamala D Harris": "Kamala Harris"
+    })
+
     # get unique candidates
     candidates_list = county_df["candidate"].unique().tolist()
-
-    # there are 2 different spellings of Donald Trump: Donald Trump and Donald J Trump -> remove Donald Trump
-    candidates_list.remove("Donald Trump")
 
     # list of Candidate objects for bulk insert into db
     candidates = [Candidate(candidate_name=candidate) for candidate in candidates_list]
