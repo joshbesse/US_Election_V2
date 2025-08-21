@@ -42,7 +42,7 @@ class StateResults(models.Model):
     total_votes = models.IntegerField(null=False, blank=False)
 
     def __str__(self):
-        return f"{self.year} - {self.state.state_code} - {self.party.party_code} - {self.candidate.candidate_name} - {self.candidate_votes} - {self.total_votes}"
+        return f"{self.year} - {self.state.state_code} - {self.party.party} - {self.candidate.candidate_name} - {self.candidate_votes} - {self.total_votes}"
 
     class Meta:
         unique_together = ("year", "state", "candidate")
