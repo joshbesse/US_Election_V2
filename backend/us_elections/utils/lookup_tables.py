@@ -60,6 +60,9 @@ def prepare_county_data(county_df):
     # filter for fips code that contains only numbers
     county_df = county_df[county_df["county_fips"].str.isdigit()]
 
+    # change county name to more appealing formatting
+    county_df["county_name"] = county_df["county_name"].str.title()
+    
     # get unique combinations of necessary fields
     county_info = county_df[["state_po", "county_name", "county_fips"]].drop_duplicates()
 

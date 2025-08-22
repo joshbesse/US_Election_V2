@@ -17,9 +17,6 @@ class County(models.Model):
     def __str__(self):
         return f"{self.county_fips} - {self.state.state_code} - {self.county_name}"
 
-    class Meta:
-        unique_together = ("state", "county_name")
-
 class Candidate(models.Model):
     candidate_name = models.CharField(max_length=128)
 
@@ -56,7 +53,7 @@ class CountyResults(models.Model):
     total_votes = models.IntegerField(null=False, blank=False)
 
     def __str__(self):
-        return f"{self.year} - {self.county.state.state_code} - {self.county.county_name} - {self.party.party_code} - {self.candidate.candidate_name} - {self.candidate_votes} - {self.total_votes}"
+        return f"{self.year} - {self.county.state.state_code} - {self.county.county_name} - {self.party.party} - {self.candidate.candidate_name} - {self.candidate_votes} - {self.total_votes}"
 
     class Meta:
         unique_together = ("year", "county", "candidate")
